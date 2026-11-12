@@ -322,6 +322,16 @@ code {
   overflow: hidden
 }
 
+/* Black overlay directly over cover artwork (calibrated to half darkness) */
+.landing-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.24);
+  pointer-events: none;
+  z-index: 1;
+}
+
 .cover-img {
   position: absolute;
   inset: 0;
@@ -366,14 +376,16 @@ code {
   position: relative;
   z-index: 2;
   background:
-    radial-gradient(115% 78% at 50% 34%, transparent 34%, rgba(11, 7, 3, .35) 82%, rgba(11, 7, 3, .62) 100%),
-    linear-gradient(180deg, rgba(10, 6, 3, .35) 0%, transparent 26%, transparent 48%, rgba(10, 6, 3, .55) 100%);
+    radial-gradient(115% 78% at 50% 34%, rgba(0, 0, 0, 0.08) 25%, rgba(11, 7, 3, 0.28) 80%, rgba(11, 7, 3, 0.42) 100%),
+    linear-gradient(180deg, rgba(10, 6, 3, 0.26) 0%, transparent 26%, transparent 48%, rgba(10, 6, 3, 0.36) 100%);
 }
 
 .landing-overlay {
   position: relative;
   z-index: 2;
-  background: radial-gradient(70% 50% at 50% 45%, transparent 30%, rgba(11, 7, 3, .2) 100%);
+  background:
+    linear-gradient(180deg, rgba(10, 6, 3, 0.28) 0%, rgba(10, 6, 3, 0.18) 35%, rgba(10, 6, 3, 0.22) 65%, rgba(10, 6, 3, 0.36) 100%),
+    radial-gradient(ellipse 95% 85% at 50% 50%, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.32) 100%);
 }
 
 .temple-glow {
@@ -448,38 +460,53 @@ code {
   animation: riseIn 1.5s .35s var(--ease) both
 }
 
+.landing-eyebrow .ar {
+  font-family: var(--f-display), serif;
+  font-size: clamp(17px, 4.4vw, 24px);
+  color: var(--gold-lt);
+  letter-spacing: .03em;
+  line-height: 1.35;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95), 0 0 20px rgba(231, 201, 122, 0.35);
+}
+
 .landing-eyebrow .ml {
   font-family: var(--f-ml);
   font-size: clamp(14px, 3.6vw, 18px);
   color: var(--gold-lt);
-  letter-spacing: .02em
+  letter-spacing: .02em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
 }
 
 .landing-eyebrow .en {
   font-size: clamp(9.5px, 2.4vw, 11.5px);
   letter-spacing: .32em;
   text-transform: uppercase;
-  color: rgba(251, 247, 239, .62)
+  color: rgba(255, 246, 227, .92);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.9);
 }
 
 .landing-inner .divider {
-  animation: riseIn 1.5s .6s var(--ease) both
+  animation: riseIn 1.5s .6s var(--ease) both;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.9));
 }
 
 .landing-names {
   margin-top: 16px;
   font-family: var(--f-display);
-  font-weight: 300;
+  font-weight: 400;
   font-size: clamp(28px, 7.8vw, 80px);
   text-align: center;
-  line-height: 1.08;
-  letter-spacing: .01em;
+  line-height: 1.1;
+  letter-spacing: .015em;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
-  color: #FFF6E3;
-  text-shadow: 0 2px 30px rgba(255, 196, 110, .32), 0 1px 3px rgba(0, 0, 0, .4);
+  gap: 3px;
+  color: #FFF9ED;
+  text-shadow:
+    0 2px 14px rgba(0, 0, 0, 0.95),
+    0 4px 28px rgba(0, 0, 0, 0.95),
+    0 0 35px rgba(255, 196, 110, 0.35);
 }
 
 .landing-names .n {
@@ -493,19 +520,22 @@ code {
 .landing-names .amp {
   font-family: var(--f-display);
   font-style: italic;
-  font-size: .44em;
+  font-size: .48em;
   color: var(--gold-lt);
-  opacity: .9;
+  opacity: .95;
   margin: 2px 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95);
   animation: riseIn 1.6s .95s var(--ease) both;
 }
 
 .landing-date {
   margin-top: 14px;
-  font-size: clamp(11px, 3vw, 13px);
+  font-size: clamp(12px, 3.2vw, 14px);
   letter-spacing: .44em;
   text-indent: .44em;
-  color: rgba(255, 246, 227, .78);
+  color: #FFF9ED;
+  font-weight: 400;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95);
   animation: riseIn 1.6s 1.25s var(--ease) both;
 }
 
@@ -700,7 +730,8 @@ code {
   font-size: 10px;
   letter-spacing: .34em;
   text-transform: uppercase;
-  color: rgba(251, 247, 239, .42);
+  color: rgba(255, 246, 227, .85);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.95);
   animation: riseIn 1.6s 1.9s var(--ease) both, hintFade 3.4s 3s ease-in-out infinite;
 }
 
