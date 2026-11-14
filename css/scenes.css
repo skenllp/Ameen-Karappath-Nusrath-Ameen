@@ -340,3 +340,25 @@ img.section-bg{
   opacity:1;transform:none;
 }
 .scene--hero.loaded.text-ready > .scroll-indicator{opacity:1}
+
+/* Scroll indicator: pinned above the bottom edge so it is always visible */
+.scene--screen > .scroll-indicator{
+  position:fixed;
+  left:0;
+  right:0;
+  width:max-content;
+  bottom:calc(96px + env(safe-area-inset-bottom, 0px));
+  margin:0 auto;
+  z-index:50;
+  padding:10px 16px 12px;
+  border-radius:999px;
+  background:rgba(253,248,238,.88);
+  box-shadow:0 6px 20px rgba(80,55,30,.18);
+  -webkit-backdrop-filter:blur(6px);
+  backdrop-filter:blur(6px);
+  gap:6px;
+  transition:opacity .5s ease, visibility .5s;
+}
+.scene--screen > .scroll-indicator .scroll-indicator__word{opacity:1;font-weight:600}
+.scene--screen > .scroll-indicator .scroll-indicator__rail{height:28px}
+.scroll-indicator.is-hidden{opacity:0 !important;visibility:hidden;pointer-events:none}
